@@ -68,6 +68,37 @@ public class ExplorerSearch {
         }
 
         return count;
+    }
 
+    public static List<int[]> possibleDirection(int[][] island, int[] current) {
+        List<int[]> directions = new ArrayList<>();
+        if (island == null || current == null) {
+            return directions;
+        }
+
+        int row = current[0];
+        int col = current[1];
+
+        // up
+       if (row - 1 >= 0 && island[row - 1][col] != 2 && island[row - 1][col] != 3) {
+            directions.add(new int[] { row - 1, col });
+        }
+
+        // down
+        if (row + 1 < island.length && island[row + 1][col] != 2 && island[row + 1][col] != 3) {
+            directions.add(new int[] { row + 1, col });
+        }
+
+        // left
+        if (col - 1 >= 0 && island[row][col - 1] != 2 && island[row][col - 1] != 3) {
+            directions.add(new int[] { row, col - 1 });
+        }
+
+        // right
+        if (col + 1 < island[0].length && island[row][col + 1] != 2 && island[row][col + 1] != 3) {
+            directions.add(new int[] { row, col + 1 });
+        }
+        
+        return directions;
     }
 }
