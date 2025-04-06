@@ -33,12 +33,16 @@ public class ExplorerSearch {
         // Please also make more test cases
         // I STRONGLY RECOMMEND testing some helpers you might make too
 
-        int[][] start = startingLocation(island);
+        int[] start = startingLocation(island);
+        if (start == null) {
+            return 0;
+        }
+        
         boolean[][] visited = new boolean[island.length][island[0].length];
         return reachableAreaHelper(island, start, visited);
     }
 
-    public static int reachableAreaHelper(int[][] island, int[][] start, boolean[][] visited) {
+    public static int reachableAreaHelper(int[][] island, int[] current, boolean[][] visited) {
 
         int row = current[0];
         int col = current[1];
@@ -54,6 +58,16 @@ public class ExplorerSearch {
         if (island[row][col] == 2 || island[row][col] == 3) {
             return 0;
         }
+
+        visited[row][col] = true;
+        int count = 1; 
+
+        List<int[]> direction = possibleDirection(island, current);
+        for (int[] dir : direction) {
+            count += reachableAreaHelper(island, dir, visited);
+        }
+
+        return count;
 
     }
 }
