@@ -98,7 +98,22 @@ public class ExplorerSearch {
         if (col + 1 < island[0].length && island[row][col + 1] != 2 && island[row][col + 1] != 3) {
             directions.add(new int[] { row, col + 1 });
         }
-        
+
         return directions;
+    }
+
+    public static int[] startingLocation(int[][] island) {
+        if (island == null) {
+            return null;
+        }
+
+        for (int i = 0; i < island.length; i++) {
+            for (int j = 0; j < island[i].length; j++) {
+                if (island[i][j] == 0) {
+                    return new int[]{i,j};
+                }
+            }
+        }
+        return null;
     }
 }
