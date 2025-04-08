@@ -33,11 +33,11 @@ public class ExplorerSearch {
         // Please also make more test cases
         // I STRONGLY RECOMMEND testing some helpers you might make too
 
-        int[] start = startingLocation(island);
-        if (start == null) {
+        if (island == null || island.length == 0 || island[0].length == 0) {
             return 0;
         }
-        
+
+        int[] start = startingLocation(island);
         boolean[][] visited = new boolean[island.length][island[0].length];
         return reachableAreaHelper(island, start, visited);
     }
@@ -72,9 +72,9 @@ public class ExplorerSearch {
 
     public static List<int[]> possibleDirection(int[][] island, int[] current) {
         List<int[]> directions = new ArrayList<>();
-        if (island == null || current == null) {
-            return directions;
-        }
+        // if (island == null || current == null) {
+        //     return directions;
+        // }
 
         int row = current[0];
         int col = current[1];
@@ -103,8 +103,8 @@ public class ExplorerSearch {
     }
 
     public static int[] startingLocation(int[][] island) {
-        if (island == null) {
-            return null;
+        if (island == null || island.length == 0 || island[0].length == 0) {
+            throw new IllegalArgumentException("Island is empty or null");
         }
 
         for (int i = 0; i < island.length; i++) {
@@ -114,6 +114,6 @@ public class ExplorerSearch {
                 }
             }
         }
-        return null;
+        throw new IllegalArgumentException("No starting location found");
     }
 }

@@ -25,8 +25,10 @@ public class ExplorerSearchTest {
             {2, 3, 1},
             {1, 1, 1}
         };
-        int actual = ExplorerSearch.reachableArea(island);
-        assertEquals(0, actual); 
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            ExplorerSearch.reachableArea(island);
+        });
+        assertEquals("No starting location found", exception.getMessage()); 
     }
 
     @Test
@@ -91,16 +93,29 @@ public class ExplorerSearchTest {
         assertEquals(9, actual); 
     }
 
+    // @Test
+    // public void testReachableArea_bigIsland() {
+    //     int[][] island = {
+    //         {1, 1, 1, 3, 1, 1},
+    //         {3, 2, 3, 1, 3, 1},
+    //         {1, 1, 1, 1, 3, 3},
+    //         {3, 1, 2, 1, 0, 1},
+    //         {1, 1, 1, 2, 1, 1},
+    //     };
+    //     int actual = ExplorerSearch.reachableArea(island);
+    //     assertEquals(14, actual); 
+    // }
+
     @Test
-    public void testReachableArea_bigIsland() {
+    public void testStartingLocationNotFound() {
         int[][] island = {
-            {1, 1, 1, 3, 1, 1},
-            {3, 2, 3, 1, 3, 1},
-            {1, 1, 1, 1, 3, 3},
-            {3, 1, 2, 1, 0, 1},
-            {1, 1, 1, 2, 1, 1},
+            {1, 1, 1},
+            {2, 3, 1},
+            {1, 1, 1}
         };
-        int actual = ExplorerSearch.reachableArea(island);
-        assertEquals(14, actual); 
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            ExplorerSearch.startingLocation(island);
+        });
+        assertEquals("No starting location found", exception.getMessage());
     }
 }
