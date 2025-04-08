@@ -47,17 +47,17 @@ public class ExplorerSearch {
         int row = current[0];
         int col = current[1];
 
-        if (row < 0 || row >= island.length || col < 0 || col >= island[0].length) {
-            return 0;
-        }
+        // if (row < 0 || row >= island.length || col < 0 || col >= island[0].length) {
+        //     return 0;
+        // }
 
         if (visited[row][col]) {
             return 0;
         }
 
-        if (island[row][col] == 2 || island[row][col] == 3) {
-            return 0;
-        }
+        // if (island[row][col] == 2 || island[row][col] == 3) {
+        //     return 0;
+        // }
 
         visited[row][col] = true;
         int count = 1; 
@@ -103,9 +103,9 @@ public class ExplorerSearch {
     }
 
     public static int[] startingLocation(int[][] island) {
-        if (island == null || island.length == 0 || island[0].length == 0) {
-            throw new IllegalArgumentException("Island is empty or null");
-        }
+        // if (island == null || island.length == 0 || island[0].length == 0) {
+        //     throw new IllegalArgumentException("Island is empty or null");
+        // }
 
         for (int i = 0; i < island.length; i++) {
             for (int j = 0; j < island[i].length; j++) {
